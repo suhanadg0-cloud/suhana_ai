@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suhana AI - Your Personal Clone Assistant</title>
+    <style>
+        body {
+            background: #f3f6ff;
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4b3fe3;
+        }
+        #chatbox {
+            width: 100%;
+            height: 320px;
+            border: 2px solid #ddd;
+            padding: 10px;
+            overflow-y: scroll;
+            border-radius: 10px;
+            background: #fafaff;
+        }
+        .input-area {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        #userInput {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #aaa;
+        }
+        button {
+            padding: 12px 20px;
+            background: #4b3fe3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #352dc7;
+        }
+        .msg-user {
+            color: #0a7c15;
+            margin: 8px 0;
+        }
+        .msg-bot {
+            color: #4b3fe3;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Suhana AI – Your Personal Clone</h1>
+    <p><b>About Suhana AI:</b><br>
+        I am Suhana AI, a smart assistant designed to help with studies, coding doubts, motivation,
+        resume tips, and daily tasks. Ask me anything!</p>
+
+    <div id="chatbox"></div>
+
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+function sendMessage() {
+    let userMsg = document.getElementById("userInput").value;
+    if (userMsg.trim() === "") return;
+
+    let chatbox = document.getElementById("chatbox");
+
+    chatbox.innerHTML += "<p class='msg-user'><b>You:</b> " + userMsg + "</p>";
+
+    let botReply = generateReply(userMsg.toLowerCase());
+
+    setTimeout(() => {
+        chatbox.innerHTML += "<p class='msg-bot'><b>Suhana AI:</b> " + botReply + "</p>";
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }, 400);
+
+    document.getElementById("userInput").value = "";
+}
+
+function generateReply(msg) {
+    if (msg.includes("hello") || msg.includes("hi")) {
+        return "Hello! I'm Suhana AI. How can I help you today?";
+    }
+    if (msg.includes("who are you")) {
+        return "I am Suhana AI — an AI clone of Suhana Gulagundi. I can help with studies, coding, motivation, and more!";
+    }
+    if (msg.includes("motivate")) {
+        return "You are stronger than you think! Keep learning and growing. I believe in you. 💪✨";
+    }
+    if (msg.includes("python")) {
+        return "Python is one of the best languages for beginners. You can start with variables, loops, and functions!";
+    }
+    if (msg.includes("c program")) {
+        return "C programming is all about logic. Start with data types, loops, arrays, and functions!";
+    }
+    if (msg.includes("resume")) {
+        return "A good resume includes skills, education, projects, and achievements. Keep it simple and clean!";
+    }
+    if (msg.includes("your name")) {
+        return "My name is Suhana AI — created for the AI Workshop Project.";
+    }
+    if (msg.includes("bye")) {
+        return "Goodbye! I'm always here if you need me 😊";
+    }
+
+    return "That's interesting! Tell me more.";
+}
+</script>
+
+</body>
+</html>
